@@ -430,7 +430,21 @@ public class RedBlackTree{
       printTree(root.left, trunk, false);
   }
   
-  
+  public ArrayList <node> getList(){
+    
+  }
+
+  private ArrayList <node> getList(){
+    if(map.size() <= i){
+            ArrayList<Integer> mapArray = new ArrayList();
+            map.add(mapArray);
+        }
+        if(start != null){
+            map.get(i).add(start.key);
+            getList(i + 1, start.left, map);
+            getList(i + 1, start.right, map);
+        }
+  }  
   
   //---- Your part:
   // This should check for the rules that ensure the tree is a Red Black Tree.
@@ -442,6 +456,9 @@ public class RedBlackTree{
   // To receive full credit you must explicitly check for each property! You may not assume anything based on the above implementation (which does ensure all these rules are followed)
   // you may wish to add some helper functions here.
   public boolean isRedBlack() {
+    if(root.color == black){
+      
+    }
 	  return false;
   }
   

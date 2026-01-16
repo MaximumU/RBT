@@ -431,18 +431,17 @@ public class RedBlackTree{
   }
   
   public ArrayList <node> getList(){
-    
+    ArrayList <node> map = new ArrayList <node> ();
+    getList(root, map);
   }
 
-  private ArrayList <node> getList(){
+  private ArrayList <node> getList(node n, ArrayList <node> map){
     if(map.size() <= i){
-            ArrayList<Integer> mapArray = new ArrayList();
-            map.add(mapArray);
         }
         if(start != null){
-            map.get(i).add(start.key);
-            getList(i + 1, start.left, map);
-            getList(i + 1, start.right, map);
+            map.add(start.key);
+            getList(start.left, map);
+            getList(start.right, map);
         }
   }  
   

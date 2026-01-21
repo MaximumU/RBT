@@ -430,19 +430,18 @@ public class RedBlackTree{
       printTree(root.left, trunk, false);
   }
   
-  public ArrayList <node> getList(){
-    ArrayList <node> map = new ArrayList <node> ();
+  public ArrayList <Node> getList(){
+    ArrayList <Node> map = new ArrayList <Node> ();
     getList(root, map);
   }
 
-  private ArrayList <node> getList(node n, ArrayList <node> map){
-    if(map.size() <= i){
-        }
-        if(start != null){
-            map.add(start.key);
-            getList(start.left, map);
-            getList(start.right, map);
-        }
+  private ArrayList <Node> getList(node n, ArrayList <Node> map){
+    if(start != null){
+      map.add(start);
+      getList(start.left, map);
+      getList(start.right, map);
+    }
+    return map;
   }  
   
   //---- Your part:
@@ -456,7 +455,12 @@ public class RedBlackTree{
   // you may wish to add some helper functions here.
   public boolean isRedBlack() {
     if(root.color == black){
-      
+      ArrayList<Node>map = getList();
+      for(Node n : map){
+        if(n.color == RED && (n.right.color == RED || n.left.color == RED))
+          return false;
+      }
+
     }
 	  return false;
   }

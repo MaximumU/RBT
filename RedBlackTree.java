@@ -460,21 +460,55 @@ public class RedBlackTree{
         if(n.color == RED && (n.right.color == RED || n.left.color == RED))
           return false;
       }
-
+      for(Node n : map){
+        if(checkBlackHeight(n))
+          return false;
+      }
+      return true;
     }
 	  return false;
   }
-  
-  
+
+  //returns the black height of a node
+  private int blackHeight(Node n){
+    if(n== null)
+      return 1;
+    return n.color ? 1+Math.max(blackHeight(n.right), blackHeight(n.left)) : Math.max(blackHeight(n.right), blackHeight(n.left));
+  }
+
+  private int getHeight(Node n){
+    if(n== null)
+      return 1;
+    return 1 + Math.max(getHeight(n.right), getHeight(n.left));
+  }
+
+  private boolean checkBlackHeight(Node n){
+    //base case
+    if(n == null)
+      return true;
+    if(n.left == null && n.right == null)
+      return true;
+    if(blackHeight(n.right)!=blackHeight(n.left))
+      return true;
+    return false;
+  }
+
+
   //This should return a string of comma separated keys that represents the shortest height path through the tree.
   //Perhaps this would be easier to do with some helper functions?
+  private String shortestTruePath(Node n, String str) {
+      return 1;
+    str = str + n.key;
+    return 1 + Math.max(getHeight(n.right), getHeight(n.left));
+  }
   public String shortestTruePath() {
-	  return "";
+    String str = "";
+
   }
   
   //This returns the absolute value of the difference between the real height of the tree and its black height. 
   public int trueHeightDiff(){
-	  return 0;
+	  return getHeight(root) - blackHeight(root);
   }
 }
 

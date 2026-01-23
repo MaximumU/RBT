@@ -496,13 +496,19 @@ public class RedBlackTree{
 
   //This should return a string of comma separated keys that represents the shortest height path through the tree.
   //Perhaps this would be easier to do with some helper functions?
-  private String shortestTruePath(Node n, String str) {
-      return 1;
-    str = str + n.key;
-    return 1 + Math.max(getHeight(n.right), getHeight(n.left));
+  private void shortestTruePath(Node n, String str) {
+    if(n!= null){
+      str = str + n.key;
+      if(getHeight(n.right) < getHeight(n.left))
+        hortestTruePath(n.right, str);
+      else if(getHeight(n.right) > getHeight(n.left))
+        shortestTruePath(n.left, str);
+    }
   }
   public String shortestTruePath() {
     String str = "";
+    shortestTruePath(root, str);
+    return str;
 
   }
   
